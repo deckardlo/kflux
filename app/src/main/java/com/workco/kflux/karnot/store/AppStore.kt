@@ -2,12 +2,10 @@ package com.workco.kflux.karnot.store
 
 import android.util.Log
 import com.workco.kflux.karnot.actions.AppAction
-import com.workco.kflux.karnot.callbacks.AppCallback
 import com.workco.kflux.karnot.dispatcher.AppDispatcher
 import com.workco.kflux.karnot.events.AppChangeEvent
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Consumer
 import io.reactivex.subjects.BehaviorSubject
 
 abstract class AppStore(name: String, dispatcher: AppDispatcher) {
@@ -23,7 +21,7 @@ abstract class AppStore(name: String, dispatcher: AppDispatcher) {
         _dispatcher = dispatcher
         _storeName = name
 
-        val disposable: Disposable? = _dispatcher?.register(provideStoreDispatcherCallbacks())
+        val disposable: Disposable? = _dispatcher?.register { reduce(it) }
         _disposableRegister?.add(disposable)
     }
 
@@ -35,16 +33,8 @@ abstract class AppStore(name: String, dispatcher: AppDispatcher) {
         _storeChangeEmitter?.onNext(event)
     }
 
-    fun provideStoreDispatcherCallbacks(): AppCallback {
-        val callback: AppCallback = AppCallback()
-
-        callback.onAction = Consumer { reduce(it) }
-
-        return callback
-    }
-
-    fun addListener(listener: AppCallback): Disposable? {
-        val disposable: Disposable? = _storeChangeEmitter?.subscribe(listener.onEmittChange)
+    fun onChange(listener: (it: AppChangeEvent) -> Unit): Disposable? {
+        val disposable: Disposable? = _storeChangeEmitter?.subscribe(listener)
         _disposableRegister?.add(disposable)
         return disposable
     }

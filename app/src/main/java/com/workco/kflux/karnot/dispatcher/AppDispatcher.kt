@@ -2,7 +2,6 @@ package com.workco.kflux.karnot.dispatcher
 
 import android.util.Log
 import com.workco.kflux.karnot.actions.AppAction
-import com.workco.kflux.karnot.callbacks.AppCallback
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
@@ -19,9 +18,9 @@ class AppDispatcher {
         _startDispatching(action)
     }
 
-    fun register(callback: AppCallback?): Disposable? {
+    fun register(consumer: (it: AppAction) -> Unit): Disposable? {
         Log.d(TAG, "registering store callbacks")
-        val disposable: Disposable? = _actionDispatcher?.subscribe(callback?.onAction)
+        val disposable: Disposable? = _actionDispatcher?.subscribe(consumer)
         _compositeDisposable?.add(disposable)
         return disposable
     }
