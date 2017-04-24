@@ -3,34 +3,39 @@ package com.workco.kflux
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.widget.Button
+import android.widget.TextView
 import com.workco.kflux.example.ExampleActionCreator
 import com.workco.kflux.example.store.ExampleStore
 import com.workco.kflux.karnot.actions.ActionType
 import com.workco.kflux.karnot.actions.ActionsCreator
 import com.workco.kflux.karnot.dispatcher.AppDispatcher
 import com.workco.kflux.karnot.events.AppChangeEvent
-import kotlinx.android.synthetic.main.activity_main.*
+import com.workco.kflux.ui.MainActivityUI
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.setContentView
 
 class MainActivity : AppCompatActivity() {
     private val TAG: String = "MainActivity"
 
     private var _exampleStore: ExampleStore? = null
     private val _exampleDispatcher: AppDispatcher = AppDispatcher()
-    private var _exampleActionsCreator: ActionsCreator? = null
+    private var _exampleActionsCreator: ActionsCreator = ExampleActionCreator(_exampleDispatcher)
 
     init {
-        _exampleActionsCreator = ExampleActionCreator(_exampleDispatcher)
-
         _exampleStore = ExampleStore(_exampleDispatcher)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val layout: MainActivityUI = MainActivityUI()
+        layout.setContentView(this)
 
-        btn_action_hello?.onClick {
-            Log.d(TAG, "create action button clicked")
+        layout.createButton.onClick {  }
+
+        val button = findViewById(R.id.btn_create_action) as Button
+        button?.onClick {
+            Log.d(TAG, "button create action clicked")
             _exampleActionsCreator?.createAction(ActionType.APP_BUTTON_CLICKED)
         }
 
@@ -44,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "update ui to: " + data)
         val eventData: String = data as String
         val events: ArrayList<AppChangeEvent>? = _exampleStore?.getStoreEvents()
-        text_kotlin_flux?.text = eventData + " - " + events?.size
+        val textview = findViewById(R.id.text_result_action_view) as TextView
+
+        textview.text = eventData + events?.size
     }
 }

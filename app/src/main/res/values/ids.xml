@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_create_action" type="id" />
+    <item name="text_result_action_view" type="id"/>
+    <item name="layout_vertical_layout" type="id"/>
+</resources>
