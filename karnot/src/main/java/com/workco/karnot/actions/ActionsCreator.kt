@@ -1,7 +1,7 @@
-package com.workco.kflux.karnot.actions
+package com.workco.karnot.actions
 
 import android.util.Log
-import com.workco.kflux.karnot.dispatcher.AppDispatcher
+import com.workco.karnot.dispatcher.AppDispatcher
 
 abstract class ActionsCreator(dispatcher: AppDispatcher) {
     private val TAG: String = "ActionsCreator"

@@ -1,11 +1,10 @@
 package com.workco.kflux.example
 
 import android.util.Log
-import com.workco.kflux.karnot.actions.ActionType
-import com.workco.kflux.karnot.actions.ActionsCreator
-import com.workco.kflux.karnot.actions.AppAction
-import com.workco.kflux.karnot.actions.AppGenericError
-import com.workco.kflux.karnot.dispatcher.AppDispatcher
+import com.workco.karnot.actions.ActionType
+import com.workco.karnot.actions.ActionsCreator
+import com.workco.karnot.actions.AppAction
+import com.workco.karnot.dispatcher.AppDispatcher
 import com.workco.kflux.model.ButtonClickedAction
 
 class ExampleActionCreator(dispatcher: AppDispatcher): ActionsCreator(dispatcher = dispatcher) {
@@ -16,7 +15,6 @@ class ExampleActionCreator(dispatcher: AppDispatcher): ActionsCreator(dispatcher
 
         var action: AppAction? = null
         when (type) {
-            ActionType.ERROR -> action = AppGenericError()
             ActionType.APP_BUTTON_CLICKED -> action = ButtonClickedAction()
             else -> { Log.d(TAG, "else block") }
         }

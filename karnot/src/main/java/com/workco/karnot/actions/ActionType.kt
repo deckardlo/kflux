@@ -1,4 +1,4 @@
-package com.workco.kflux.karnot.actions
+package com.workco.karnot.actions
 
 enum class ActionType {
     INIT,

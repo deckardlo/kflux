@@ -1,11 +1,11 @@
 package com.workco.kflux.example.store
 
 import android.util.Log
-import com.workco.kflux.karnot.actions.ActionType
-import com.workco.kflux.karnot.actions.AppAction
-import com.workco.kflux.karnot.dispatcher.AppDispatcher
-import com.workco.kflux.karnot.events.AppChangeEvent
-import com.workco.kflux.karnot.store.AppStore
+import com.workco.karnot.actions.ActionType
+import com.workco.karnot.actions.AppAction
+import com.workco.karnot.dispatcher.AppDispatcher
+import com.workco.karnot.events.AppChangeEvent
+import com.workco.karnot.store.AppStore
 
 class ExampleStore(dispatcher: AppDispatcher): AppStore(name = "Example", dispatcher = dispatcher) {
     private val TAG: String = "ExampleStore"

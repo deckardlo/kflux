@@ -1,4 +1,4 @@
-package com.workco.kflux.karnot.actions
+package com.workco.karnot.actions
 
 abstract class AppAction(type: ActionType) {
     protected var _actionType: ActionType? = type

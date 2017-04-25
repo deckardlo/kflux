@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.workco.karnot.actions.ActionType
+import com.workco.karnot.actions.ActionsCreator
+import com.workco.karnot.dispatcher.AppDispatcher
+import com.workco.karnot.events.AppChangeEvent
 import com.workco.kflux.example.ExampleActionCreator
 import com.workco.kflux.example.store.ExampleStore
-import com.workco.kflux.karnot.actions.ActionType
-import com.workco.kflux.karnot.actions.ActionsCreator
-import com.workco.kflux.karnot.dispatcher.AppDispatcher
-import com.workco.kflux.karnot.events.AppChangeEvent
 import com.workco.kflux.ui.MainActivityUI
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.setContentView

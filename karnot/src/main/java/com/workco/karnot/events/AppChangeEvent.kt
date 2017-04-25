@@ -1,4 +1,4 @@
-package com.workco.kflux.karnot.events
+package com.workco.karnot.events
 
 interface AppChangeEvent {
     fun eventType(): String

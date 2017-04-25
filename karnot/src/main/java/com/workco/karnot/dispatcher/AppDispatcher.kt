@@ -1,7 +1,7 @@
-package com.workco.kflux.karnot.dispatcher
+package com.workco.karnot.dispatcher
 
 import android.util.Log
-import com.workco.kflux.karnot.actions.AppAction
+import com.workco.karnot.actions.AppAction
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.BehaviorSubject
